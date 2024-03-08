@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+  <h1 class="text-center my-5">Lista de Habitaciones</h1>
+  {% if habitaciones %}
+    <div class="container">
+      <table class="table table-striped">
+        <thead class="table-dark">
+          <tr>
+            <th scope="col">Numero de Habitacion</th>
+            <th scope="col">Piso</th>
+            <th scope="col">Precio</th>
+            <th scope="col">Tipo de Habitacion</th>
+            <th scope="col">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for habitacion in habitaciones %}
+            <tr>
+              <td>{{ habitacion.numero_habitacion }}</td>
+              <td>{{ habitacion.piso }}</td>
+              <td>Lps. {{ habitacion.precio }}</td>
+              <td>{{ habitacion.tipo_habitacion }}</td>
+              <td>
+                <a href="ver/{{ cliente.id }}" class="btn btn-success rounded-pill">Ver Detalles</a>
+                <a href="eliminar/{{ cliente.id }}" class="btn btn-danger rounded-pill">Eliminar</a>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <a href="{% url 'registrar_habitacion' %}" class="btn btn-secondary">Nueva Habitacion</a>
+    </div>
+  {% else %}
+    <div class="container mt-5 text-center">
+      <img src="{% static 'images/room.png' %}" width="40%" alt="" />
+      <h3>No existen habitaciones registradas</h3>
+      <a href="{% url 'registrar_habitacion' %}" class="btn btn-primary rounded-pill">Nueva Habitacion</a>
+    </div>
+  {% endif %}
+{% endblock %}

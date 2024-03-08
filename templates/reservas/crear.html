@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+  <h1 class="my-4 text-center text-gray-800">Nueva Reserva</h1>
+  <div class="row w-100">
+    <div class="col-3"></div>
+    <div class="col-6">
+      <form action="{% url 'guardar_habitacion' %}" method="POST">
+        {% csrf_token %}
+        <div class="input-group mb-3 flex-nowrap">
+          <span class="input-group-text" id="addon-wrapping"><i class="fa-solid fa-hashtag"></i></span>
+          <select name="habitacion" id="" class="form-control">
+            {% for habitacion in habitaciones %}
+              <option value="{{ habitacion.numero_habitacion }}">Habitacion {{ habitacion.numero_habitacion }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="input-group mb-3 flex-nowrap">
+          <span class="input-group-text" id="addon-wrapping"><i class="fa-solid fa-stairs"></i>-Piso</span>
+          <select name="piso" id="" class="form-control">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+        </div>
+        <div class="input-group mb-3 flex-nowrap">
+          <span class="input-group-text" id="addon-wrapping"><i class="fa-regular fa-file-lines"></i></span>
+          <textarea name="descripcion" placeholder="Descripcion de la habitacion" cols="30" rows="2" class="form-control"></textarea>
+        </div>
+        <div class="input-group mb-3 flex-nowrap">
+          <span class="input-group-text" id="addon-wrapping"><i class="fa-solid fa-file-signature"></i></span>
+          <textarea name="caracteristicas" placeholder="Caracteristicas de la habitacion" cols="30" rows="2" class="form-control"></textarea>
+        </div>
+        <div class="input-group mb-3 flex-nowrap">
+          <span class="input-group-text" id="addon-wrapping"><i class="fa-solid fa-hand-holding-dollar"></i></span>
+          <input type="text" required name="precio" class="form-control" placeholder="Precio" aria-label="Username" aria-describedby="addon-wrapping" />
+        </div>
+        <div class="input-group mb-3 flex-nowrap">
+          <span class="input-group-text" id="addon-wrapping">Estado</span>
+          <select name="estado" id="" class="form-control">
+            <option value="disponible">Disponible</option>
+            <option value="ocupada">Ocupada</option>
+          </select>
+        </div>
+        <div class="input-group mb-3 flex-nowrap">
+          <span class="input-group-text" id="addon-wrapping">Tipo de Habitacion</span>
+          <select name="tipo_habitacion" id="" class="form-control">
+            <option value="sencilla">Sencilla</option>
+            <option value="doble">Doble</option>
+            <option value="matrimonial">Matrimonial</option>
+          </select>
+        </div>
+        <div class="modal-footer">
+          <a href="{% url 'habitaciones' %}" class="btn btn-danger rounded-pill me-2">Cancelar</a>
+          <input type="submit" value="Guardar Habitacion" class="btn btn-primary rounded-pill" />
+        </div>
+      </form>
+    </div>
+    <div class="col-3"></div>
+  </div>
+{% endblock %}

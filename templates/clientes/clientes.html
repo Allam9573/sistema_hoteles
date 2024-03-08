@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+  <h1 class="text-center my-5">Lista de Clientes</h1>
+  {% if clientes %}
+    <div class="container">
+      <table class="table table-striped">
+        <thead class="table-dark">
+          <tr>
+            <th scope="col">Nombre</th>
+            <th scope="col">Direccion</th>
+            <th scope="col">Correo Electronico</th>
+            <th scope="col">Telefono</th>
+            <th scope="col">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for cliente in clientes %}
+            <tr>
+              <td>{{ cliente.nombre }}</td>
+              <td>{{ cliente.direccion }}</td>
+              <td>{{ cliente.correo }}</td>
+              <td>{{ cliente.telefono }}</td>
+              <td>
+                <a href="ver/{{ cliente.id }}" class="btn btn-success rounded-pill">Ver Detalles</a>
+                <a href="eliminar/{{ cliente.id }}" class="btn btn-danger rounded-pill">Eliminar</a>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <a href="{% url 'registrar_cliente' %}" class="btn btn-secondary">Nuevo Cliente</a>
+    </div>
+  {% else %}
+    <div class="container mt-5 text-center">
+      <img src="{% static 'images/clientes.png' %}" width="40%" alt="" />
+      <h3>No existen clientes registrados</h3>
+      <a href="{% url 'registrar_cliente' %}" class="btn btn-secondary rounded-pill">Nuevo Cliente</a>
+    </div>
+  {% endif %}
+{% endblock %}

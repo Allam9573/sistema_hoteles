@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+  <h1 class="my-4 text-center text-gray-800">Nuevo Cliente</h1>
+  <div class="row w-100">
+    <div class="col-3"></div>
+    <div class="col-6">
+      <form action="{% url 'guardar_cliente' %}" method="POST">
+        {% csrf_token %}
+        <div class="input-group mb-3 flex-nowrap">
+          <span class="input-group-text" id="addon-wrapping"><i class="fas fa-user"></i></span>
+          <input type="text" required name="nombre_completo" class="form-control" placeholder="Nombre Completo" aria-label="Username" aria-describedby="addon-wrapping" />
+        </div>
+        <div class="input-group mb-3 flex-nowrap">
+          <span class="input-group-text" id="addon-wrapping"><i class="fas fa-envelope"></i></span>
+          <input type="text" required name="correo" class="form-control" placeholder="CorreoElectronico" aria-label="Username" aria-describedby="addon-wrapping" />
+        </div>
+        <div class="input-group mb-3 flex-nowrap">
+          <span class="input-group-text" id="addon-wrapping"><i class="fas fa-location-arrow"></i></span>
+          <input type="text" required name="direccion" class="form-control" placeholder="Direccion de residencia" aria-label="Username" aria-describedby="addon-wrapping" />
+        </div>
+        <div class="input-group mb-3 flex-nowrap">
+          <span class="input-group-text" id="addon-wrapping"><i class="fas fa-phone"></i></span>
+          <input type="text" required name="telefono" class="form-control" placeholder="Telefono" aria-label="Username" aria-describedby="addon-wrapping" />
+        </div>
+        <div class="input-group mb-3 flex-nowrap">
+          <span class="input-group-text" id="addon-wrapping">Tipo de documento</span>
+          <select name="tipo_documento" id="" class="form-control">
+            <option value="dni">DNI</option>
+            <option value="pasaporte">Pasaporte</option>
+            <option value="carnet_estudiante">Carnet de Estudiante</option>
+          </select>
+        </div>
+        <div class="input-group mb-3 flex-nowrap">
+          <span class="input-group-text" id="addon-wrapping"><i class="fa-solid fa-id-card"></i></span>
+          <input type="text" required name="numero_documento" class="form-control" placeholder="Numero de documento" aria-label="Username" aria-describedby="addon-wrapping" />
+        </div>
+        <div class="modal-footer">
+          <a href="{% url 'clientes' %}" class="btn btn-danger rounded-pill me-2">Cancelar</a>
+          <input type="submit" value="Guardar Cliente" class="btn btn-primary rounded-pill" />
+        </div>
+      </form>
+    </div>
+    <div class="col-3"></div>
+  </div>
+{% endblock %}
