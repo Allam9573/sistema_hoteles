@@ -1,5 +1,45 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-fwef
+  <h1 class="ms-5 text-secondary my-5">Registro de Reservaciones</h1>
+  {% if reservas %}
+    <div class="container">
+      <table class="table table-striped">
+        <thead class="table-dark">
+          <tr>
+            <th scope="col">Cliente</th>
+            <th scope="col">No. Habitacion</th>
+            <th scope="col">Ingreso</th>
+            <th scope="col">Salida</th>
+            <th scope="col">Precio / Dia</th>
+            <th scope="col">Total</th>
+            <th scope="col">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for reserva in reservas %}
+            <tr>
+              <td>{{ reserva.cliente.nombre }}</td>
+              <td>{{ reserva.habitacion.numero_habitacion }}</td>
+              <td>{{ reserva.fecha_ingreso }}</td>
+              <td>{{ reserva.fecha_salida }}</td>
+              <td>Lps. {{ reserva.habitacion.precio }}</td>
+              <td>Lps. {{ reserva.costo_subtotal }}</td>
+              <td>
+                <a href="view/{{ reserva.id }}/" class="btn btn-primary rounded-pill"><i class="fa-solid fa-eye"></i></a>
+                <a href="eliminar/{{ cliente.id }}" class="btn btn-danger rounded-pill"><i class="fa-solid fa-trash-can"></i></a>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <a href="{% url 'registrar_reserva' %}" class="btn btn-success">Nueva Reservacion</a>
+    </div>
+  {% else %}
+    <div class="container mt-5 text-center">
+      <img src="{% static 'images/room.png' %}" width="40%" alt="" />
+      <h3>No existen reservas registradas</h3>
+      <a href="{% url 'registrar_reserva' %}" class="btn btn-primary rounded-pill">Nueva Reserva</a>
+    </div>
+  {% endif %}
 {% endblock %}

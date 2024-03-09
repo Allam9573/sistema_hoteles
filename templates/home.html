@@ -1,5 +1,37 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-  <div class="btn btn-primary rounded-pill" style="width: 10%;">Mas</div>
+  <h1 class="ms-5 text-secondary my-5">Panel Administracion</h1>
+  <div class="mx-auto justify-content-center d-flex" style="width: 90%;">
+    <div class="card shadow mx-5" style="width:20rem;">
+      <h3 class="fw-light m-3">Clientes</h3>
+      <div class="row">
+        <div class="col-6 text-end" style="font-size: 3rem;">{{ clientes }}</div>
+        <div class="col-6">
+          <i class="fa-solid fa-users" style="font-size: 5rem;"></i>
+        </div>
+      </div>
+      <a href="{% url 'clientes' %}" class="btn btn-danger w-50 m-3 rounded-pill">Ver Mas</a>
+    </div>
+    <div class="card shadow mx-5" style="width:20rem;">
+      <h3 class="fw-light m-3">Habitaciones</h3>
+      <div class="row">
+        <div class="col-6 text-end" style="font-size: 3rem;">{{ habitaciones }}</div>
+        <div class="col-6">
+          <i class="fa-solid fa-bed" style="font-size: 5rem;"></i>
+        </div>
+      </div>
+      <a href="{% url 'habitaciones' %}" class="btn btn-success w-50 m-3 rounded-pill">Ver Mas</a>
+    </div>
+    <div class="card shadow mx-5" style="width:20rem;">
+      <h3 class="fw-light m-3">Reservaciones</h3>
+      <div class="row">
+        <div class="col-6 text-end" style="font-size: 3rem;">{{ reservas }}</div>
+        <div class="col-6">
+          <i class="fa-solid fa-bell-concierge" style="font-size: 5rem;"></i>
+        </div>
+      </div>
+      <a href="{% url 'reservas' %}" class="btn btn-warning w-50 m-3 rounded-pill">Ver Mas</a>
+    </div>
+  </div>
 {% endblock %}

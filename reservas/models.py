@@ -12,3 +12,4 @@ class Reserva(models.Model):
     fecha_salida = models.DateTimeField()
     fecha_creacion = models.DateTimeField(auto_now_add=True)
     costo_subtotal = models.DecimalField(max_digits=10, decimal_places=2)
+    dias_hospedados = models.IntegerField(default=0)

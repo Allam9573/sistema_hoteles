@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+  <h1 class="ms-5 text-secondary my-5">Detalles de la Reserva</h1>
+  <div class="row">
+    <div class="col-2"></div>
+    <div class="col-4">
+      <div class="w-75 mb-3 d-flex justify-content-between align-items-between">
+        <div class="fw-bold fs-5">Cliente:</div>
+        <div class="lead">{{ reserva.cliente.nombre }}</div>
+      </div>
+      <div class="w-75 mb-3 d-flex justify-content-between align-items-between">
+        <div class="fw-bold fs-5">Habitacion:</div>
+        <div class="lead">{{ reserva.habitacion.numero_habitacion }}</div>
+      </div>
+      <div class="w-75 mb-3 d-flex justify-content-between align-items-between">
+        <div class="fw-bold fs-5">Ingreso:</div>
+        <div class="lead">{{ reserva.fecha_ingreso }}</div>
+      </div>
+      <div class="w-75 mb-3 d-flex justify-content-between align-items-between">
+        <div class="fw-bold fs-5">Salida:</div>
+        <div class="lead">{{ reserva.fecha_salida }}</div>
+      </div>
+      <div class="w-75 mb-3 d-flex justify-content-between align-items-between">
+        <div class="fw-bold fs-5">Dias hospedados:</div>
+        {% if reserva.dias_hospedados == 1 %}
+          <div class="lead">{{ reserva.dias_hospedados }} dia</div>
+        {% else %}
+          <div class="lead">{{ reserva.dias_hospedados }} dias</div>
+        {% endif %}
+      </div>
+      <hr />
+      <br />
+      <h3>Metodos de Pago</h3>
+      <div class="card">
+        <ul class="list-group">
+          <li class="list-group-item d-flex justify-content-between align-items-center" aria-disabled="true">
+            <span>Tarjeta Credito / Debito</span>
+            <div>
+              <i class="fa-brands fa-cc-mastercard" style="font-size: 3rem;"></i>
+              <i class="fa-brands fa-cc-visa" style="font-size: 3rem;"></i>
+            </div>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center" aria-disabled="true">
+            <span>Pago con Paypal</span>
+            <div>
+              <i class="fa-brands fa-cc-paypal text-primary" style="font-size: 3rem;"></i>
+            </div>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center" aria-disabled="true">
+            <span>Efectivo</span>
+            <div>
+              <i class="fa-solid fa-money-bill-1-wave text-success" style="font-size: 3rem;"></i>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-4">
+      <div class="card">
+        <h5 class="ms-3 my-3">Resumen de Compra:</h5>
+        <div class="mx-3 mb-3 d-flex justify-content-between align-items-between">
+          <div class="fw-medium fs-5">Precio por dia:</div>
+          <div class="lead">Lps. {{ reserva.habitacion.precio }}</div>
+        </div>
+        <div class="mx-3 ms-3 mb-3 d-flex justify-content-between align-items-between">
+          <div class="fw-medium fs-5">Precio Subtotal:</div>
+          <div class="lead">Lps. {{ reserva.costo_subtotal }}</div>
+        </div>
+        <div class="mx-3 ms-3 mb-3 d-flex justify-content-between align-items-between">
+          <div class="fw-medium fs-5">Descuento:</div>
+          <div class="lead">Lps. 0.00</div>
+        </div>
+        <hr />
+        <div class="mx-3 ms-3 mb-3 d-flex justify-content-between align-items-between">
+          <div class="fw-medium fs-5">Total:</div>
+          <div class="lead">Lps. {{ reserva.costo_subtotal }}</div>
+        </div>
+        <a href="" class="btn btn-danger m-3">Procesar Pago</a>
+      </div>
+    </div>
+    <div class="col-2"></div>
+  </div>
+{% endblock %}
