@@ -29,13 +29,13 @@ def registrar_reserva(request):
 
 
 def guardar_reserva(request):
-    if request.method == 'POST':
-        cliente = Cliente.objects.get(id=int(request.POST['cliente']))
-        habitacion = Habitacion.objects.get(id=int(request.POST['habitacion']))
-        fecha_ingreso_str = request.POST.get('fecha_ingreso')
-        fecha_salida_str = request.POST.get('fecha_salida')
-        fecha_ingreso = datetime.strptime(fecha_ingreso_str, '%Y-%m-%d')
-        fecha_salida = datetime.strptime(fecha_salida_str, '%Y-%m-%d')
+    if request.method == "POST":
+        cliente = Cliente.objects.get(id=int(request.POST["cliente"]))
+        habitacion = Habitacion.objects.get(id=int(request.POST["habitacion"]))
+        fecha_ingreso_str = request.POST.get("fecha_ingreso")
+        fecha_salida_str = request.POST.get("fecha_salida")
+        fecha_ingreso = datetime.strptime(fecha_ingreso_str, "%Y-%m-%d")
+        fecha_salida = datetime.strptime(fecha_salida_str, "%Y-%m-%d")
         diferencia = fecha_salida - fecha_ingreso
         dias = diferencia.days
         subtotal = habitacion.precio * dias
@@ -45,14 +45,14 @@ def guardar_reserva(request):
             fecha_ingreso=fecha_ingreso_str,
             fecha_salida=fecha_salida_str,
             costo_subtotal=subtotal,
-            dias_hospedados=dias
+            dias_hospedados=dias,
         )
         nueva_reserva.save()
-        return redirect('reservas')
+        return redirect("reservas")
     else:
-        return redirect('reservas')
+        return redirect("reservas")
 
 
 def ver_reserva(request, id):
     reserva = Reserva.objects.get(id=id)
-    return render(request, 'reservas/ver.html', {'reserva': reserva})
+    return render(request, "reservas/ver.html", {"reserva": reserva})
