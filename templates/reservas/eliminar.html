@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+  <div class="container mt-5 text-center">
+    <h3>Deseas eliminar la reserva a nombre de "{{ reserva.cliente.nombre }}" del registro?</h3>
+    <div class="d-flex flex-row justify-content-center align-items-center">
+      <a href="{% url 'reservas' %}" class="btn btn-outline-danger me-2">Cancelar</a>
+      <a href="{% url 'eliminar_reserva' id=reserva.id %}" class="btn btn-danger">Si, deseo eliminar</a>
+    </div>
+  </div>
+{% endblock %}

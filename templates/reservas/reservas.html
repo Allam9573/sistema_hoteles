@@ -27,7 +27,7 @@
               <td>Lps. {{ reserva.costo_subtotal }}</td>
               <td>
                 <a href="view/{{ reserva.id }}/" class="btn btn-primary rounded-pill"><i class="fa-solid fa-eye"></i></a>
-                <a href="eliminar/{{ cliente.id }}" class="btn btn-danger rounded-pill"><i class="fa-solid fa-trash-can"></i></a>
+                <a href="{% url "ver_reserva_eliminar" id=reserva.id %}" class="btn btn-danger rounded-pill"><i class="fa-solid fa-trash-can"></i></a>
               </td>
             </tr>
           {% endfor %}

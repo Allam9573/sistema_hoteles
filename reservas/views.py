@@ -56,3 +56,16 @@ def guardar_reserva(request):
 def ver_reserva(request, id):
     reserva = Reserva.objects.get(id=id)
     return render(request, "reservas/ver.html", {"reserva": reserva})
+
+
+def ver_reserva_eliminar(request, id):
+    reserva = Reserva.objects.get(id=id)
+    return render(request, 'reservas/eliminar.html', {
+        'reserva': reserva
+    })
+
+
+def eliminar_reserva(request, id):
+    reserva = Reserva.objects.get(id=id)
+    reserva.delete()
+    return redirect('reservas')
