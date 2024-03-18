@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from facturas.models import Factura
 from reservas.models import Reserva
 from flujo_caja.models import Flujo_Caja
+from decimal import Decimal
 
 
 # Create your views here.
@@ -21,11 +22,13 @@ def crear_factura(request):
         reserva = Reserva.objects.get(id=int(request.POST["reserva_id"]))
         monto = float(request.POST["monto"])
         cambio = 0
+        impuesto = float(reserva.costo_subtotal) * 0.15
         if monto > reserva.costo_subtotal:
             cambio = monto - float(reserva.costo_subtotal)
 
         flujo_caja.ingresos_totales += reserva.costo_subtotal
-        nueva_factura = Factura(reserva=reserva, cambio=cambio, monto_ingresado=monto)
+        flujo_caja.impuestos += Decimal(impuesto)
+        nueva_factura = Factura(reserva=reserva, cambio=cambio, monto_ingresado=monto, impuesto=impuesto)
         nueva_factura.save()
         flujo_caja.save()
         return redirect("facturas")

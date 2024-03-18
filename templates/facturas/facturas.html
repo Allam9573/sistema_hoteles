@@ -14,6 +14,13 @@
       <h3 class="fw-light m-3">Gastos</h3>
       <div class="d-flex mb-3 justify-content-around align-items-end">
         <h4 class="lead">Lps. {{ flujo_caja.gastos }}</h4>
+        <i class="fa-solid fa-money-bill-transfer text-secondary" style="font-size: 4rem;"></i>
+      </div>
+    </div>
+    <div class="card shadow mx-5" style="width:20rem;">
+      <h3 class="fw-light m-3">Impuestos</h3>
+      <div class="d-flex mb-3 justify-content-around align-items-end">
+        <h4 class="lead">Lps. {{ flujo_caja.impuestos }}</h4>
         <i class="fa-solid fa-scale-balanced text-secondary" style="font-size: 4rem;"></i>
       </div>
     </div>
@@ -49,9 +56,9 @@
       </table>
     </div>
   {% else %}
-    <div class="container mt-5 text-center">
-      <img src="{% static 'images/room.png' %}" width="40%" alt="" />
-      <h3 class="text-secondary">Aqui visualizaras podras monitorear el historial de facturas creadas.</h3>
+    <div class="container my-5 text-center">
+      <img src="{% static 'images/money.png' %}" width="40%" alt="" />
+      <h3 class="text-secondary">Aqui podras gestionar los ingresos y monitorear el historial de facturas creadas.</h3>
     </div>
   {% endif %}
 {% endblock %}

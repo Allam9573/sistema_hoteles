@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+  <h1 class="ms-5 text-secondary my-5">Administracion Insumos y Productos</h1>
+  {% if proveedores %}
+    <div class="container">
+      <table class="table table-striped">
+        <thead class="table-primary">
+          <tr>
+            <th scope="col">Producto</th>
+            <th scope="col">Proveedor</th>
+            <th scope="col">Existencia</th>
+            <th scope="col">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for proveedor in proveedores %}
+            <tr>
+              <td>{{ proveedor.nombre }}</td>
+              <td>{{ proveedor.contacto }}</td>
+              <td>{{ proveedor.correo }}</td>
+              <td>{{ proveedor.telefono }}</td>
+              <td>
+                <a href="" class="btn btn-success rounded-pill"><i class="fa-solid fa-pen"></i></a>
+                <a href="" class="btn btn-danger rounded-pill"><i class="fa-solid fa-trash-can"></i></a>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Nuevo Proveedor</button>
+    </div>
+  {% else %}
+    <div class="container mt-5 text-center">
+      <img src="{% static 'images/proveedores.png' %}" class="mb-5" width="40%" alt="" />
+      <h3 class="text-secondary">Aqui podras administrar todos tus proveedores.</h3>
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Agregar Proveedor</button>
+    </div>
+  {% endif %}
+  <!-- Button trigger modal -->
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Nuevo Proveedor</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form action="{% url 'guardar_proveedor' %}" method="POST">
+            {% csrf_token %}
+            <div class="input-group mb-3">
+              <span class="input-group-text"><i class="fa-solid fa-truck"></i></span>
+              <input type="text" placeholder="Nombre proveedor" name="nombre" id="" class="form-control" />
+            </div>
+            <div class="input-group mb-3">
+              <span class="input-group-text"><i class="fa-solid fa-user"></i></span>
+              <input type="text" placeholder="Contacto" name="contacto" id="" class="form-control" />
+            </div>
+            <div class="input-group mb-3">
+              <span class="input-group-text"><i class="fa-solid fa-envelope"></i></span>
+              <input type="text" placeholder="Correo Electronico" name="correo" id="" class="form-control" />
+            </div>
+            <div class="input-group mb-3">
+              <span class="input-group-text"><i class="fa-solid fa-phone"></i></span>
+              <input type="text" placeholder="Telefono" name="telefono" id="" class="form-control" />
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+              <input type="submit" value="Guardar Proveedor" class="btn btn-primary" />
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

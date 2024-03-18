@@ -44,6 +44,9 @@ INSTALLED_APPS = [
     "reservas",
     "facturas",
     "flujo_caja",
+    "proveedores",
+    "compras",
+    "productos"
 ]
 
 MIDDLEWARE = [
