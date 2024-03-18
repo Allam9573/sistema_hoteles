@@ -12,4 +12,8 @@ def home(request):
     clientes = Cliente.objects.count()
     habitaciones = Habitacion.objects.count()
     reservas = Reserva.objects.count()
-    return render(request, "home.html", {'clientes': clientes, 'habitaciones': habitaciones, 'reservas': reservas})
+    return render(
+        request,
+        "home.html",
+        {"clientes": clientes, "habitaciones": habitaciones, "reservas": reservas},
+    )

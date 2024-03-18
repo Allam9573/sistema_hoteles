@@ -76,8 +76,18 @@
           <div class="fw-medium fs-5">Total:</div>
           <div class="lead">Lps. {{ reserva.costo_subtotal }}</div>
         </div>
-        <a href="" class="btn btn-danger m-3">Procesar Pago</a>
-        <a href="{% url "reservas" %}" class="btn btn-outline-danger mx-3 mb-3">Atras</a>
+        <div class="mx-3">
+          <form action="{% url 'crear_factura' %}" method="POST">
+            {% csrf_token %}
+            <div class="input-group">
+              <span class="input-group-text"><i class="fa-solid fa-dollar-sign"></i></span>
+              <input type="hidden" name="reserva_id" value="{{ reserva.id }}" />
+              <input type="text" name="monto" placeholder="Monto efectivo" id="" class="form-control" />
+            </div>
+            <input type="submit" value="Procesar Pago" class="btn btn-danger w-100 my-3" />
+          </form>
+        </div>
+        <a href="{% url 'reservas' %}" class="btn btn-outline-danger mx-3 mb-3">Atras</a>
       </div>
     </div>
     <div class="col-2"></div>

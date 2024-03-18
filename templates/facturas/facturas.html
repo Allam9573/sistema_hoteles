@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+  <h1 class="ms-5 text-secondary my-5">Flujo de Ingresos</h1>
+  <div class="mx-auto mb-5 justify-content-center d-flex" style="width: 90%;">
+    <div class="card shadow mx-5" style="width:20rem;">
+      <h3 class="fw-light m-3">Ingresos Totales</h3>
+      <div class="d-flex mb-3 justify-content-around align-items-end">
+        <h4 class="lead">Lps. {{ flujo_caja.ingresos_totales }}</h4>
+        <i class="fa-solid fa-hand-holding-dollar text-secondary" style="font-size: 4rem;"></i>
+      </div>
+    </div>
+    <div class="card shadow mx-5" style="width:20rem;">
+      <h3 class="fw-light m-3">Gastos</h3>
+      <div class="d-flex mb-3 justify-content-around align-items-end">
+        <h4 class="lead">Lps. {{ flujo_caja.gastos }}</h4>
+        <i class="fa-solid fa-scale-balanced text-secondary" style="font-size: 4rem;"></i>
+      </div>
+    </div>
+  </div>
+  {% if facturas %}
+    <div class="container">
+      <table class="table table-striped">
+        <thead class="table-primary">
+          <tr>
+            <th scope="col">Cliente</th>
+            <th scope="col">Total</th>
+            <th scope="col">Monto ingresado</th>
+            <th scope="col">Cambio</th>
+            <th scope="col">Fecha Creacion</th>
+            <th scope="col">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for factura in facturas %}
+            <tr>
+              <td>{{ factura.reserva.cliente.nombre }}</td>
+              <td>Lps. {{ factura.reserva.costo_subtotal }}</td>
+              <td>Lps. {{ factura.monto_ingresado }}</td>
+              <td>Lps. {{ factura.cambio }}</td>
+              <td>{{ factura.fecha_creacion }}</td>
+              <td>
+                <a href="" class="btn btn-primary rounded-pill"><i class="fa-solid fa-eye"></i></a>
+                <a href="" class="btn btn-danger rounded-pill"><i class="fa-solid fa-trash-can"></i></a>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  {% else %}
+    <div class="container mt-5 text-center">
+      <img src="{% static 'images/room.png' %}" width="40%" alt="" />
+      <h3 class="text-secondary">Aqui visualizaras podras monitorear el historial de facturas creadas.</h3>
+    </div>
+  {% endif %}
+{% endblock %}
