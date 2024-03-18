@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load humanize %}
 {% block content %}
   <h1 class="ms-5 text-secondary my-5">Registro de Reservaciones</h1>
   {% if reservas %}
@@ -23,8 +24,8 @@
               <td>{{ reserva.habitacion.numero_habitacion }}</td>
               <td>{{ reserva.fecha_ingreso }}</td>
               <td>{{ reserva.fecha_salida }}</td>
-              <td>Lps. {{ reserva.habitacion.precio }}</td>
-              <td>Lps. {{ reserva.costo_subtotal }}</td>
+              <td>Lps. {{ reserva.habitacion.precio|intcomma }}</td>
+              <td>Lps. {{ reserva.costo_subtotal|intcomma }}</td>
               <td>
                 <a href="view/{{ reserva.id }}/" class="btn btn-primary rounded-pill"><i class="fa-solid fa-eye"></i></a>
                 <a href="{% url "ver_reserva_eliminar" id=reserva.id %}" class="btn btn-danger rounded-pill"><i class="fa-solid fa-trash-can"></i></a>

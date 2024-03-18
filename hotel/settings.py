@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
+    "django.contrib.humanize",
     "django.contrib.staticfiles",
     "habitaciones",
     "clientes",
@@ -46,7 +47,7 @@ INSTALLED_APPS = [
     "flujo_caja",
     "proveedores",
     "compras",
-    "productos"
+    "productos",
 ]
 
 MIDDLEWARE = [

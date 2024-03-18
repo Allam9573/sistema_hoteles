@@ -1,26 +1,27 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load humanize %}
 {% block content %}
   <h1 class="ms-5 text-secondary my-5">Flujo de Ingresos</h1>
   <div class="mx-auto mb-5 justify-content-center d-flex" style="width: 90%;">
     <div class="card shadow mx-5" style="width:20rem;">
       <h3 class="fw-light m-3">Ingresos Totales</h3>
       <div class="d-flex mb-3 justify-content-around align-items-end">
-        <h4 class="lead">Lps. {{ flujo_caja.ingresos_totales }}</h4>
+        <h4 class="lead fs-4">Lps. {{ flujo_caja.ingresos_totales|intcomma }}</h4>
         <i class="fa-solid fa-hand-holding-dollar text-secondary" style="font-size: 4rem;"></i>
       </div>
     </div>
     <div class="card shadow mx-5" style="width:20rem;">
       <h3 class="fw-light m-3">Gastos</h3>
       <div class="d-flex mb-3 justify-content-around align-items-end">
-        <h4 class="lead">Lps. {{ flujo_caja.gastos }}</h4>
+        <h4 class="lead fs-4">Lps. {{ flujo_caja.gastos|intcomma|floatformat:2 }}</h4>
         <i class="fa-solid fa-money-bill-transfer text-secondary" style="font-size: 4rem;"></i>
       </div>
     </div>
     <div class="card shadow mx-5" style="width:20rem;">
       <h3 class="fw-light m-3">Impuestos</h3>
       <div class="d-flex mb-3 justify-content-around align-items-end">
-        <h4 class="lead">Lps. {{ flujo_caja.impuestos }}</h4>
+        <h4 class="lead fs-4">Lps. {{ flujo_caja.impuestos|intcomma }}</h4>
         <i class="fa-solid fa-scale-balanced text-secondary" style="font-size: 4rem;"></i>
       </div>
     </div>
@@ -42,9 +43,9 @@
           {% for factura in facturas %}
             <tr>
               <td>{{ factura.reserva.cliente.nombre }}</td>
-              <td>Lps. {{ factura.reserva.costo_subtotal }}</td>
-              <td>Lps. {{ factura.monto_ingresado }}</td>
-              <td>Lps. {{ factura.cambio }}</td>
+              <td>Lps. {{ factura.reserva.costo_subtotal|intcomma }}</td>
+              <td>Lps. {{ factura.monto_ingresado|intcomma }}</td>
+              <td>Lps. {{ factura.cambio|intcomma }}</td>
               <td>{{ factura.fecha_creacion }}</td>
               <td>
                 <a href="" class="btn btn-primary rounded-pill"><i class="fa-solid fa-eye"></i></a>
