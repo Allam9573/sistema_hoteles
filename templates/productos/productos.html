@@ -16,10 +16,9 @@
         <tbody>
           {% for producto in productos %}
             <tr>
-              <td>{{ proveedor.nombre }}</td>
-              <td>{{ proveedor.contacto }}</td>
-              <td>{{ proveedor.correo }}</td>
-              <td>{{ proveedor.telefono }}</td>
+              <td>{{ producto.nombre }}</td>
+              <td>{{ producto.proveedor.nombre }}</td>
+              <td>{{ producto.existencia}} unidades</td>
               <td>
                 <a href="" class="btn btn-success rounded-pill"><i class="fa-solid fa-pen"></i></a>
                 <a href="" class="btn btn-danger rounded-pill"><i class="fa-solid fa-trash-can"></i></a>
