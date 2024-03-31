@@ -31,6 +31,8 @@
         {% endif %}
       </div>
       <hr />
+      
+      <a href="" data-bs-toggle="modal" data-bs-target="#modalConsumos" class="btn btn-success my-2"><i class="fa-solid fa-utensils me-2"></i>Agregar Consumo</a>
       <br />
       <h3>Metodos de Pago</h3>
       <div class="card">
@@ -93,4 +95,31 @@
     </div>
     <div class="col-2"></div>
   </div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="modalConsumos" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar Consumo</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      <form action="">
+        <div class="input-group">
+          <span class="input-group-text"><i class="fa-solid fa-utensils"></i></span>
+          <select name="" class="form-control" id=""></select>
+        </div>
+      </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary">Agregar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 {% endblock %}
