@@ -48,6 +48,8 @@ INSTALLED_APPS = [
     "proveedores",
     "compras",
     "productos",
+    "consumos",
+    "servicios",
 ]
 
 MIDDLEWARE = [
@@ -87,11 +89,11 @@ WSGI_APPLICATION = "hotel.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.mysql",
-        "NAME": "railway",
+        "NAME": "hotel",
         "USER": "root",
-        "PASSWORD": "BhENOUKMXkDdrjGpoWvfEMQirkewbbmF",
-        "HOST": "roundhouse.proxy.rlwy.net",
-        "PORT": "52780",
+        "PASSWORD": "admin1234",
+        "HOST": "localhost",
+        "PORT": "3306",
     }
 }
 
