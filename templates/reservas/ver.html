@@ -30,9 +30,24 @@
           <div class="lead">{{ reserva.dias_hospedados }} dias</div>
         {% endif %}
       </div>
+      <div class="w-75 mb-3 d-flex justify-content-between align-items-between">
+        <div class="fw-bold fs-5">Consumos:</div>
+        {% if reserva.consumos %}
+          <div class="lead">{{ reserva.consumos }} dia</div>
+        {% else %}
+          <div class="lead">Lps. {{ reserva.total_consumos|intcomma }}</div>
+        {% endif %}
+      </div>
       <hr />
-      
-      <a href="" data-bs-toggle="modal" data-bs-target="#modalConsumos" class="btn btn-success my-2"><i class="fa-solid fa-utensils me-2"></i>Agregar Consumo</a>
+      {% if reserva.consumos %}
+        <h4>Consumos:</h4>
+        <ul class="list-group">
+          <li class="list-group-item">{{ reserva.consumos }}</li>
+        </ul>
+      {% else %}
+        <h3>No tiene consumos en el hotel</h3>
+      {% endif %}
+      <a href="" data-bs-toggle="modal" data-bs-target="#modalConsumos" class="btn btn-primary my-4"><i class="fa-solid fa-utensils me-2"></i>Agregar Consumo</a>
       <br />
       <h3>Metodos de Pago</h3>
       <div class="card">
@@ -85,7 +100,7 @@
             <div class="input-group">
               <span class="input-group-text"><i class="fa-solid fa-dollar-sign"></i></span>
               <input type="hidden" name="reserva_id" value="{{ reserva.id }}" />
-              <input type="text" name="monto" placeholder="Monto efectivo" id="" class="form-control" />
+              <input type="number" name="monto" placeholder="Monto efectivo" id="" class="form-control" />
             </div>
             <input type="submit" value="Procesar Pago" class="btn btn-danger w-100 my-3" />
           </form>
@@ -96,30 +111,33 @@
     <div class="col-2"></div>
   </div>
 
-
-
-<!-- Modal -->
-<div class="modal fade" id="modalConsumos" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar Consumo</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-      <form action="">
-        <div class="input-group">
-          <span class="input-group-text"><i class="fa-solid fa-utensils"></i></span>
-          <select name="" class="form-control" id=""></select>
+  <!-- Modal Servicios de Consumo -->
+  <div class="modal fade" id="modalConsumos" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar Consumo</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-      </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-primary">Agregar</button>
+        <div class="modal-body">
+          <form action="{% url 'agregar_consumo' %}" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="id_reserva" value="{{ reserva.id }}" />
+            <div class="input-group">
+              <span class="input-group-text"><i class="fa-solid fa-utensils"></i></span>
+              <select name="id_servicio" class="form-control" id="">
+                {% for servicio in servicios %}
+                  <option value="{{ servicio.id }}">{{ servicio.nombre }}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+              <input type="submit" value="Agregar Consumo" class="btn btn-primary" />
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   </div>
-</div>
-
 {% endblock %}

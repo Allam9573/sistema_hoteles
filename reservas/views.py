@@ -3,6 +3,7 @@ from reservas.models import Reserva
 from habitaciones.models import Habitacion
 from clientes.models import Cliente
 from datetime import datetime
+from servicios.models import Servicio
 
 
 # Create your views here.
@@ -55,7 +56,8 @@ def guardar_reserva(request):
 
 def ver_reserva(request, id):
     reserva = Reserva.objects.get(id=id)
-    return render(request, "reservas/ver.html", {"reserva": reserva})
+    servicios = Servicio.objects.all()
+    return render(request, "reservas/ver.html", {"reserva": reserva, "servicios": servicios})
 
 
 def ver_reserva_eliminar(request, id):
@@ -67,3 +69,11 @@ def eliminar_reserva(request, id):
     reserva = Reserva.objects.get(id=id)
     reserva.delete()
     return redirect("reservas")
+
+
+def agregar_consumo(request):
+    reserva = Reserva.objects.get(id=int(request.POST['id_reserva']))
+    servicio = Servicio.objects.get(id=int(request.POST['id_servicio']))
+    reserva.consumos = servicio
+    reserva.save()
+    return redirect('reservas')
