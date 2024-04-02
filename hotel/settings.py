@@ -89,11 +89,11 @@ WSGI_APPLICATION = "hotel.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.mysql",
-        "NAME": "hotel",
+        "NAME": "railway",
         "USER": "root",
-        "PASSWORD": "admin1234",
-        "HOST": "localhost",
-        "PORT": "3306",
+        "PASSWORD": "BhENOUKMXkDdrjGpoWvfEMQirkewbbmF",
+        "HOST": "roundhouse.proxy.rlwy.net",
+        "PORT": "52780",
     }
 }
 
